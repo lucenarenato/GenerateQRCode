@@ -15,8 +15,11 @@ use App\Http\Controllers\ImageController;
 |
 */
 
+Route::get('/', function () {
+    return view('index');
+});
 
-Route::get('/', [QRcodeGenerateController::class,'qrcode']);
+Route::get('/qrcode', [QRcodeGenerateController::class,'qrcode']);
 
 Route::get('qrcode/{orderNumber}', [QRcodeGenerateController::class, 'qrcodeDB']);
 Route::get('order/{orderNumber}', [QRcodeGenerateController::class, 'showOrderDetails']);
@@ -32,3 +35,5 @@ Route::get('link-image-to-user-form', function () {
     $users = App\Models\User::all();
     return view('link_image_to_user', compact('users'));
 });
+
+Route::get('/lists', [ImageController::class, 'listImages'])->name('images.index');

@@ -66,5 +66,11 @@ class ImageController extends Controller
 
         return response()->json(['message' => 'Image uploaded and linked to user successfully', 'userImageOrder' => $userImageOrder], 201);
     }
+
+    public function listImages()
+    {
+        $images = Image::all();
+        return view('images.index', compact('images'));
+    }
 }
 
